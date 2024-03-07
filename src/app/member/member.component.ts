@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { GLOBAL } from '../app-config';
 import { Member } from 'src/Modeles/Member';
 import { MemberService } from 'src/Services/member.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-member',
@@ -11,15 +15,34 @@ import { MemberService } from 'src/Services/member.service';
 })
 export class MemberComponent {
 nom = 'ali'
-constructor(private MS:MemberService){}
-datasource:any[]=this.MS.tab
-
+//injection de dépendences
+constructor(private MS:MemberService,private dialog:MatDialog){}
+//datasource:any[]=this.MS.tab
+datasource = new MatTableDataSource(this.MS.tab)
 displayedColumns: string[] = ['id','cin', 'name', 'cv', 'type','createdDate','action'];
 
 delete(id:string):void
 {
-  //appeler la fonction de service ONDELETE
-  this.MS.ONDELETE(id).subscribe(()=>{})
+  let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    height: '200px',
+    width: '300px',
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    if(result)
+    {
+      //appeler la fonction de service ONDELETE
+      this.MS.ONDELETE(id).subscribe(()=>{
+
+        this.datasource.data=this.MS.tab
+      })
+    }
+  });
+  
+}
+
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.datasource.filter = filterValue.trim().toLowerCase();
 }
 }
 

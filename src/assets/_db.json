@@ -15,5 +15,40 @@
             "type":"etudiant",
             "createdDate":"27/01/2024"
         }
+    ],
+    "articles":[
+        {
+            "id":"0001",
+            "type":"test",
+            "titre":"ttttttt",
+            "date":"27/01/2024"
+        },{
+            "id":"0002",
+            "type":"aaaaaaaa",
+            "titre":"aaaaaaaa",
+            "date":"25/03/2024"
+        },
+        {
+            "id":"0001",
+            "type":"test",
+            "titre":"ttttttt",
+            "date":"27/01/2024"
+        },{
+            "id":"0002",
+            "type":"aaaaaaaa",
+            "titre":"aaaaaaaa",
+            "date":"25/03/2024"
+        },
+        {
+            "id":"0001",
+            "type":"test",
+            "titre":"ttttttt",
+            "date":"27/01/2024"
+        },{
+            "id":"0002",
+            "type":"aaaaaaaa",
+            "titre":"aaaaaaaa",
+            "date":"25/03/2024"
+        }
     ]
 }
